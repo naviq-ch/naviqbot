@@ -134,7 +134,7 @@ The script converts the desired linear speed $v$ and the effective steering angl
 1.  **Robot Angular Velocity:** The effective steering angle $\theta_{eff}$ at the offset $L$ relates to the required instantaneous angular velocity $\omega$ (rad/s) of the AGV chassis by:
 
 $$
-\omega = \frac{v \sin(\theta_{eff})}{L}
+\omega = \frac{v \times \sin(\theta_{eff})}{L}
 $$
 
 This formula links the steering angle needed at the front sensor to the turning rate of the robot's central axis.
@@ -144,23 +144,23 @@ This formula links the steering angle needed at the front sensor to the turning 
 Forward component calculation:
 
 $$
-v_{fwd} = \frac{v \cos(\theta_{eff})}{R}
+w_{fwd} = \frac{v \times \cos(\theta_{eff})}{R}
 $$
 
 Turning component calculation:
 
 $$
-v_{turn} = \left( \frac{B}{2 \times L \times R} \right) \times v \times \sin(\theta_{eff})
+w_{turn} = \left( \frac{B}{2 \times L \times R} \right) \times v \times \sin(\theta_{eff})
 $$
 
 Individual wheel speeds (rad/s):
 
 $$
-w_l = v_{fwd} + v_{turn}
+w_l = w_{fwd} + w_{turn}
 $$
 
 $$
-w_r = v_{fwd} - v_{turn}
+w_r = w_{fwd} - w_{turn}
 $$
 
 **Output Motor Commands:**
