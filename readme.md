@@ -142,15 +142,15 @@ This formula links the steering angle needed at the front sensor to the turning 
 2.  **Wheel Angular Velocities (Code Implementation):** The Python code calculates intermediate components directly:
     * Forward component calculation (shared speed adjusted by cosine of effective angle):
 
-$$
-v_{fwd\_comp} = \frac{v \cos(\theta_{eff})}{R}
-$$
+    $$
+    v_{fwd\_comp} = \frac{v \cos(\theta_{eff})}{R}
+    $$
 
-* Turning component calculation (difference in wheel speeds needed to achieve $\omega$):
+    Turning component calculation (difference in wheel speeds needed to achieve $\omega$):
 
-$$
-v_{turn\_comp} = \left( \frac{B}{2 \times L \times R} \right) \times v \times \sin(\theta_{eff})
-$$
+    $$
+    v_{turn\_comp} = \left( \frac{B}{2 \times L \times R} \right) \times v \times \sin(\theta_{eff})
+    $$
 
 *(Note: This turning component is equivalent to $\frac{\omega \times B}{2 \times R}$, derived from the relationship for $\omega$ above).*
 * Individual wheel speeds (rad/s):
