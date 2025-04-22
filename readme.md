@@ -100,11 +100,11 @@ The goal of the control system is to maintain the sensor's position directly ove
 **Control Inputs (from Sensor):**
 
 * $pos$: Lateral position error (m). Selected from `pos_left` or `pos_right`.
-* $angle$: Tangential angle error (degrees). Selected from `angle_left` or `angle_right`.
+* $angle$: Track angle (degrees). Selected from `angle_left` or `angle_right`.
 
 **Control Parameters:**
 
-* $v$: Desired speed along the track (m/s). Set by `VELOCITY_...` constants based on state.
+* $v$: Desired speed along the track, at sensor position (m/s). Set by `VELOCITY_...` constants based on state.
 * $K_{p\theta}$: Proportional gain for position-to-angle correction (rad/m). Set by `KP_POS_TO_ANGLE`.
 
 **Control Law:**
@@ -112,7 +112,7 @@ The goal of the control system is to maintain the sensor's position directly ove
 1.  **Base Steering Angle (Feedforward):** The sensor's angle relative to the tape provides a direct feedforward term for alignment.
 
 $$
-\theta_{base} = \text{radians}(angle)
+\theta_{feedforward} = \text{radians}(angle)
 $$
 
 2.  **Position Correction Angle (Feedback):** An additional steering angle is calculated proportionally to the negative position error to steer back towards the centerline.
@@ -124,7 +124,7 @@ $$
 3.  **Effective Steering Angle:** The base angle and position correction are combined to get the final target steering angle *relative to the robot's current orientation, as seen by the sensor*.
 
 $$
-\theta_{eff} = \theta_{base} + \Delta\theta_{pos}
+\theta_{eff} = \theta_{feedforward} + \Delta\theta_{pos}
 $$
 
 **Kinematic Model:**
