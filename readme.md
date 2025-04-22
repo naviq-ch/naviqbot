@@ -111,9 +111,9 @@ The goal of the control system is to maintain the sensor's position directly ove
 
 1.  **Base Steering Angle (Feedforward):** The sensor's angle relative to the tape provides a direct feedforward term for alignment.
 
-    $$
-    \theta_{base} = \text{radians}(angle)
-    $$
+$$
+\theta_{base} = \text{radians}(angle)
+$$
 
 2.  **Position Correction Angle (Feedback):** An additional steering angle is calculated proportionally to the negative position error to steer back towards the centerline.
 
@@ -137,7 +137,7 @@ $$
 \omega = \frac{v \sin(\theta_{eff})}{L}
 $$
 
-    This formula links the steering angle needed at the front sensor to the turning rate of the robot's central axis.
+This formula links the steering angle needed at the front sensor to the turning rate of the robot's central axis.
 
 2.  **Wheel Angular Velocities (Code Implementation):** The Python code calculates intermediate components directly:
     * Forward component calculation (shared speed adjusted by cosine of effective angle):
@@ -146,14 +146,14 @@ $$
 v_{fwd\_comp} = \frac{v \cos(\theta_{eff})}{R}
 $$
 
-    * Turning component calculation (difference in wheel speeds needed to achieve $\omega$):
+* Turning component calculation (difference in wheel speeds needed to achieve $\omega$):
 
 $$
 v_{turn\_comp} = \left( \frac{B}{2 \times L \times R} \right) \times v \times \sin(\theta_{eff})
 $$
 
-        *(Note: This turning component is equivalent to $\frac{\omega \times B}{2 \times R}$, derived from the relationship for $\omega$ above).*
-    * Individual wheel speeds (rad/s):
+*(Note: This turning component is equivalent to $\frac{\omega \times B}{2 \times R}$, derived from the relationship for $\omega$ above).*
+* Individual wheel speeds (rad/s):
 
 $$
 w_l = v_{fwd_comp} + v_{turn_comp}
