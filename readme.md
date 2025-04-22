@@ -143,22 +143,22 @@ This formula links the steering angle needed at the front sensor to the turning 
     * Forward component calculation:
 
 $$
-v_{fwd\_comp} = \frac{v \cos(\theta_{eff})}{R}
+v_{fwd} = \frac{v \cos(\theta_{eff})}{R}
 $$
     * Turning component calculation:
 
 $$
-v_{turn\_comp} = \left( \frac{B}{2 \times L \times R} \right) \times v \times \sin(\theta_{eff})
+v_{turn} = \left( \frac{B}{2 \times L \times R} \right) \times v \times \sin(\theta_{eff})
 $$
 
 Individual wheel speeds (rad/s):
 
 $$
-w_l = v_{fwd_comp} + v_{turn_comp}
+w_l = v_{fwd} + v_{turn}
 $$
 
 $$
-w_r = v_{fwd_comp} - v_{turn_comp}
+w_r = v_{fwd} - v_{turn}
 $$
 
 **Output Motor Commands:**
