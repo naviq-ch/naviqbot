@@ -117,15 +117,15 @@ The goal of the control system is to maintain the sensor's position directly ove
 
 2.  **Position Correction Angle (Feedback):** An additional steering angle is calculated proportionally to the negative position error to steer back towards the centerline.
 
-    $$
-    \Delta\theta_{pos} = -K_{p\theta} \times pos
-    $$
+$$
+\Delta\theta_{pos} = -K_{p\theta} \times pos
+$$
 
 3.  **Effective Steering Angle:** The base angle and position correction are combined to get the final target steering angle *relative to the robot's current orientation, as seen by the sensor*.
 
-    $$
-    \theta_{eff} = \theta_{base} + \Delta\theta_{pos}
-    $$
+$$
+\theta_{eff} = \theta_{base} + \Delta\theta_{pos}
+$$
 
 **Kinematic Model:**
 
@@ -133,35 +133,35 @@ The script converts the desired linear speed $v$ and the effective steering angl
 
 1.  **Robot Angular Velocity:** The effective steering angle $\theta_{eff}$ at the offset $L$ relates to the required instantaneous angular velocity $\omega$ (rad/s) of the AGV chassis by:
 
-    $$
-    \omega = \frac{v \sin(\theta_{eff})}{L}
-    $$
+$$
+\omega = \frac{v \sin(\theta_{eff})}{L}
+$$
 
     This formula links the steering angle needed at the front sensor to the turning rate of the robot's central axis.
 
 2.  **Wheel Angular Velocities (Code Implementation):** The Python code calculates intermediate components directly:
     * Forward component calculation (shared speed adjusted by cosine of effective angle):
 
-        $$
-        v_{fwd\_comp} = \frac{v \cos(\theta_{eff})}{R}
-        $$
+$$
+v_{fwd\_comp} = \frac{v \cos(\theta_{eff})}{R}
+$$
 
     * Turning component calculation (difference in wheel speeds needed to achieve $\omega$):
 
-        $$
-        v_{turn\_comp} = \left( \frac{B}{2 \times L \times R} \right) \times v \times \sin(\theta_{eff})
-        $$
+$$
+v_{turn\_comp} = \left( \frac{B}{2 \times L \times R} \right) \times v \times \sin(\theta_{eff})
+$$
 
         *(Note: This turning component is equivalent to $\frac{\omega \times B}{2 \times R}$, derived from the relationship for $\omega$ above).*
     * Individual wheel speeds (rad/s):
 
-        $$
-        w_l = v_{fwd_comp} + v_{turn_comp}
-        $$
+$$
+w_l = v_{fwd_comp} + v_{turn_comp}
+$$
 
-        $$
-        w_r = v_{fwd_comp} - v_{turn_comp}
-        $$
+$$
+w_r = v_{fwd_comp} - v_{turn_comp}
+$$
 
 **Output Motor Commands:**
 
