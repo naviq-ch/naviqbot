@@ -104,7 +104,7 @@ The goal of the control system is to maintain the sensor's position directly ove
 
 **Control Parameters:**
 
-* $v$: Desired forward speed (m/s). Set by `VELOCITY_...` constants based on state.
+* $v$: Desired speed along the track (m/s). Set by `VELOCITY_...` constants based on state.
 * $K_{p\theta}$: Proportional gain for position-to-angle correction (rad/m). Set by `KP_POS_TO_ANGLE`.
 
 **Control Law:**
