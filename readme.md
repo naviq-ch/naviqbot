@@ -88,14 +88,14 @@ This example utilizes several data outputs from the NAVIQ MTS160 sensor:
 
 ## Control Strategy & Kinematics
 
-The goal of the control system is to maintain the sensor's position directly over the magnetic tape (lateral error $pos \approx 0$) and align the sensor with the tape's direction (tangential angle error $angle \approx 0$) while the AGV moves at a desired forward speed $v$.
+The goal of the control system is to maintain the sensor's position directly over the magnetic tape (lateral error $pos \approx 0$) and align the sensor direction of travel with the tape's direction while the AGV moves at a desired forward speed $v$.
 
 **Robot Parameters:**
 
 * $B$: Wheel base distance (m) (`BASE` constant in code).
 * $R$: Drive wheel radius (m) (`RADIUS` constant in code).
 * $GR$: Motor gear ratio (`GEAR_RATIO` constant in code).
-* $L$: Longitudinal distance from the drive wheel axis to the sensor measurement point (m) (`LENGTH` constant in code - *ensure you rename `HEIGHT` to `LENGTH` in your script*).
+* $L$: Longitudinal distance from the drive wheel axis to the sensor measurement point (m) (`LENGTH` constant in code).
 
 **Control Inputs (from Sensor):**
 
