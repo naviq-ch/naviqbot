@@ -207,20 +207,16 @@ class RobotController:
         # 3. Calculate the total effective steering angle
         theta_effective = theta_base + angle_adjustment # Total angle in radians
 
-        # 4. Calculate kinematic terms using the effective angle
-        cos_theta = math.cos(theta_effective)
-        sin_theta = math.sin(theta_effective)
-
         # Geometric factor used in the kinematic model, incorporating LENGTH (sensor offset)
         # This term influences the wheel speed difference required for turning.
         kinematic_factor = self.BASE / (2 * self.LENGTH * self.RADIUS)
 
-
         # 5. Calculate required wheel angular velocities (rad/s)
         # Forward motion component, shared by both wheels
-        forward_component = (speed * cos_theta) / self.RADIUS
+        forward_component = (speed * math.cos(theta_effective)) / self.RADIUS
+        
         # Turning component, creating difference between wheels
-        turning_component = kinematic_factor * speed * sin_theta
+        turning_component = kinematic_factor * speed * math.sin(theta_effective)
 
         wl = forward_component + turning_component # Left wheel angular velocity
         wr = forward_component - turning_component # Right wheel angular velocity
